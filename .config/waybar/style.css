@@ -1,183 +1,466 @@
-/* =============================================================================
- *
- * Waybar configuration
- *
- * Configuration reference: https://github.com/Alexays/Waybar/wiki/Configuration
- *
- * =========================================================================== */
+@import "theme.css";
 
-/* -----------------------------------------------------------------------------
- * Keyframes
- * -------------------------------------------------------------------------- */
-
-
-/*
-Polar Night
-nord0  #2e3440
-nord1  #3b4252
-nord2  #434c5e
-nord3  #4c566a
-Snow Storm
-nord4  #d8dee9
-nord5  #e5e9f0
-nord6  #eceff4
-Frost
-nord7  #8fbcbb
-nord8  #88c0d0
-nord9  #81a1c1
-nord10 #5e81ac
-Aurora
-nord11 #bf616a
-nord12 #d08770
-nord13 #ebcb8b
-nord14 #a3be8c
-nord15 #b48ead
+/* ───────────────────────────────────────────────────────────────┤ global ├───
 */
-
-/* -----------------------------------------------------------------------------
- * Base styles
- * -------------------------------------------------------------------------- */
-
-/* Reset all styles */
-
 * {
-    color: #eceff4;
-    border: 0;
-    border-radius: 0;
-    padding: 0 0;
-    font-family:Symbols Nerd Font Mono;
-    font-size: 15px;
-    margin-right: 5px;
-    margin-left: 5px;
-    padding-bottom:2px;
-   }
+  min-height: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
 
+/* ──────────────────────────────────────────────────────────┤ drop shadow ├───
+*/
 window#waybar {
-    background:rgba (0, 0, 0, 0.65);
-    border-radius: 20px 20px 20px 20px;
+  background: @shadow;
+}
+
+/* ───────────────────────────────────────────────────────────┤ background ├───
+*/
+window#waybar > box {
+  background: @main-bg;
+  margin: 2px;
+}
+
+/* ─────────────────────────────────────────────────────────────┤ tooltips ├───
+*/
+tooltip {
+  background: @main-bg;
+  border: 1.5px solid @main-br;
+  border-radius: 8px;
+}
+
+tooltip label {
+  color: @main-fg;
+  margin: -1.5px 3px;
+}
+
+/* ──────────────────────────────────────────────────────────────┤ general ├───
+*/
+#custom-theme,
+#workspaces,
+#window,
+#custom-temperature,
+#memory,
+#cpu,
+#idle_inhibitor,
+#clock,
+#custom-wifi,
+#bluetooth,
+#custom-update,
+#mpris,
+#pulseaudio,
+#backlight,
+#battery,
+#custom-power {
+  opacity: 1;
+  color: @module-fg;
+  padding: 0 4px;
+}
+
+#custom-left1,
+#custom-left2,
+#custom-left3,
+#custom-left4,
+#custom-left5,
+#custom-left6,
+#custom-left7,
+#custom-left8 {
+  margin-bottom: 0;
+  text-shadow: -2px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+#custom-right1,
+#custom-right2,
+#custom-right3,
+#custom-right4,
+#custom-right5 {
+  margin-bottom: 0;
+  padding-right: 3px;
+  text-shadow: 2px 0 2px rgba(0, 0, 0, 0.5);
+}
+
+/* ───────────────────────────────────────────────────────┤ theme switcher ├───
+*/
+#custom-theme {
+  background: @main-bg;
+}
+
+#custom-theme:hover {
+  color: @hover-fg;
+}
+
+/* ───────────────────────────────────────────────────────────┤ workspaces ├───
+*/
+#custom-left1 {
+  color: @workspaces;
+  background: @main-bg;
+  margin-bottom: 0;
+  padding-left: 2px;
+}
+
+#workspaces {
+  background: @workspaces;
 }
 
 #workspaces button {
-    padding: 2px 0px;
-    border-bottom: 2px;
-    color: #eceff4;
-    border-color: #d8dee9;
-    border-style: solid;
-    margin-top:2px;
+  color: @module-fg;
+  border-radius: 8px;
+  box-shadow: none;
+  margin: 2px 0;
+  padding: 0 2px;
+  transition: none;
+}
+
+#workspaces button:hover {
+  color: @hover-fg;
+  background: @hover-bg;
+  text-shadow: none;
 }
 
 #workspaces button.active {
-    border-color: #81a1c1;
+  color: @active-fg;
+  background: @active-bg;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.4);
+  margin: 2px;
+  padding: 0 6px;
 }
 
-#clock, #battery, #cpu, #memory,#idle_inhibitor, #temperature,#custom-keyboard-layout, #backlight, #network, #pulseaudio, #tray, #window,#custom-launcher,#custom-power,#custom-updates ,#custom-network_traffic,#custom-weather{
-    padding: 0 3px;
-    border-bottom: 2px;
-    border-style: solid;
+#custom-right1 {
+  color: @workspaces;
+  background: @main-bg;
+  text-shadow: 3px 0 2px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0;
 }
 
-/* -----------------------------------------------------------------------------
- * Module styles
- * -------------------------------------------------------------------------- */
-
-
-#clock {
- color:#a3be8c;
+/* ──────────────────────────────────────────────────────────┤ temperature ├───
+*/
+#custom-paddc {
+  padding-right: 22px;
 }
 
-#backlight {
-    color: #ebcb8b;
+#custom-left2 {
+  color: @temperature;
+  background: @main-bg;
+  padding-left: 3px;
 }
 
-#battery {
-    color: #d8dee9;
+#custom-temperature {
+  background: @temperature;
+  padding: 0 0 0 1px;
 }
 
-#battery.charging {
-    color: #81a1c1;
-}
-
-@keyframes blink {
-    to {
-        color: #4c566a;
-        background-color: #eceff4;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background: #bf616a;
-    color: #eceff4;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-#cpu {
-    color:#a3be8c ;
+/* ───────────────────────────────────────────────────────────────┤ memory ├───
+*/
+#custom-left3 {
+  color: @memory;
+  background: @temperature;
+  padding-left: 3px;
 }
 
 #memory {
-    color: #d3869b;
+  background: @memory;
+  padding: 0 0 0 1px;
 }
 
-#network.disabled {
-    color:#bf616a;
+#memory.warning {
+  color: @warning;
 }
 
-#network{
-    color:#a3be8c;
+#memory.critical {
+  color: @critical;
 }
 
-#network.disconnected {
-    color: #bf616a;
+/* ──────────────────────────────────────────────────────────────────┤ cpu ├───
+*/
+#custom-left4 {
+  color: @cpu;
+  background: @memory;
+  padding-left: 3px;
 }
 
-#pulseaudio {
-    color: #b48ead;
+#cpu {
+  background: @cpu;
 }
 
-#pulseaudio.muted {
-    color: #e20548;
+#custom-leftin1 {
+  color: @cpu;
+  margin-bottom: -1px;
 }
 
-#temperature {
-    color: #8fbcbb;
+/* ──────────────────────────────────────────────────────────┤ distro icon ├───
+*/
+#custom-left5 {
+  color: @distro-bg;
+  background: @main-bg;
+  text-shadow: none;
+  margin-bottom: -2px;
+  padding-left: 3px;
 }
 
-#temperature.critical {
-    color: #bf616a;
+#custom-distro {
+  color: @distro-fg;
+  background: @distro-bg;
+  margin: 0 -1px -2px 0;
+  padding: 0 0 0 3px;
+  text-shadow: 0 0 1.5px rgba(0, 0, 0, 1);
+}
+
+#custom-right2 {
+  color: @distro-bg;
+  background: @main-bg;
+  text-shadow: none;
+  margin-bottom: -2px;
+}
+
+/* ─────────────────────────────────────────────────────────────────┤ time ├───
+*/
+#custom-rightin1 {
+  color: @time;
+  margin-bottom: -1px;
 }
 
 #idle_inhibitor {
-   color: #ebcb8b;
+  background: @time;
+  padding: 0 0 0 7px;
 }
 
-#tray {
+#idle_inhibitor:hover {
+  color: @hover-fg;
 }
 
-#custom-launcher{
-        font-size: 20px;
-        background-image: url('/home/gocool/.config/waybar/launcher.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-        border-style: hidden;
+#clock.time {
+  background: @time;
+  margin-left: -2px;
+  padding: 0 3px 0 0;
 }
 
-#custom-power{
-    border-style: hidden;
-    margin-top:2px;
+#custom-right3 {
+  color: @time;
+  background: @date;
 }
 
-#window{
-    border-style: hidden;
-    margin-top:1px;
+/* ─────────────────────────────────────────────────────────────────┤ date ├───
+*/
+#clock.date {
+  background: @date;
 }
-#custom-keyboard-layout{
-   color:#d08770;
+
+#clock.date:hover {
+  color: @hover-fg;
 }
-#custom-network_traffic{
-   color:#d08770;
+
+#custom-right4 {
+  color: @date;
+  background: @tray;
+}
+
+/* ────────────────────────────────────────────────────────────────┤ wi-fi ├───
+*/
+#custom-wifi {
+  background: @tray;
+  padding: 0 8px 0 5px;
+}
+
+#custom-wifi:hover {
+  color: @hover-fg;
+}
+
+/* ────────────────────────────────────────────────────────────┤ bluetooth ├───
+*/
+#bluetooth {
+  background: @tray;
+  padding-right: 5px;
+}
+
+#bluetooth:hover {
+  color: @hover-fg;
+}
+
+/* ────────────────────────────────────────────────────────┤ system update ├───
+*/
+#custom-update {
+  padding-right: 8px;
+  background: @tray;
+}
+
+#custom-update:hover {
+  color: @hover-fg;
+}
+
+#custom-right5 {
+  color: @tray;
+  background: @main-bg;
+}
+
+/* ───────────────────────────────────────────────────────────┤ media info ├───
+*/
+#mpris {
+  background: @main-bg;
+  padding: 0 8px 0;
+}
+
+#mpris:hover {
+  color: @hover-fg;
+}
+
+/* ────────────────────────────────────────────────────────┤ output device ├───
+*/
+#custom-left6 {
+  color: @pulseaudio;
+  background: @main-bg;
+  padding-left: 3px;
+}
+
+#pulseaudio {
+  background: @pulseaudio;
+}
+
+#pulseaudio:hover {
+  color: @hover-fg;
+}
+
+/* ───────────────────────────────────────────────────────────┤ brightness ├───
+*/
+#custom-left7 {
+  color: @backlight;
+  background: @pulseaudio;
+  padding-left: 2px;
+}
+
+#backlight {
+  background: @backlight;
+}
+
+/* ──────────────────────────────────────────────────────────────┤ battery ├───
+*/
+#custom-left8 {
+  color: @battery;
+  background: @backlight;
+  padding-left: 2px;
+}
+
+#battery {
+  color: @module-fg;
+  background: @battery;
+}
+
+#battery.warning {
+  color: @warning;
+}
+
+#battery.critical {
+  color: @critical;
+}
+
+#battery.charging {
+  color: @charging;
+}
+
+/* ─────────────────────────────────────────────────────────┤ power button ├───
+*/
+#custom-leftin2 {
+  color: @battery;
+  background: @main-bg;
+  margin-bottom: -1px;
+}
+
+#custom-power {
+  color: @main-bg;
+  background: @power;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+  margin: 2px 4px 2px 0;
+  padding: 0 6px 0 9px;
+}
+
+#custom-power:hover {
+  color: @hover-fg;
+  background: @hover-bg;
+  text-shadow: none;
+  box-shadow: none;
+}
+
+/* ───────────────────────────────────────────────────────────┤ font sizes ├───
+*/
+/*
+  NOTE: Be careful when changing font sizes, as they can affect alignment.
+
+  Try adjusting whole numbers first, then refine with decimals.
+
+  If you increase or decrease a value, make the same change to all properties
+  in this section to keep the layout consistent.
+*/
+
+* {
+  font-family: "JetBrainsMono Nerd Font";
+  font-size: 10px;
+  font-weight: bold;
+}
+
+tooltip label,
+#window label,
+#mpris {
+  font-weight: normal;
+}
+
+/* ──────────────────────────────────────────────────┤ left & right arrows ├───
+*/
+#custom-left1,
+#custom-left2,
+#custom-left3,
+#custom-left4,
+#custom-left5,
+#custom-left6,
+#custom-left7,
+#custom-left8,
+#custom-right1,
+#custom-right2,
+#custom-right3,
+#custom-right4,
+#custom-right5 {
+  font-size: 14.68px;
+}
+
+/* ─────────────────────────────────────────────────┤ left & right inverse ├───
+*/
+#custom-leftin1,
+#custom-leftin2,
+#custom-rightin1 {
+  font-size: 15.5px;
+}
+
+/* ──────────────────────────────────────────────────────────┤ distro icon ├───
+*/
+#custom-distro {
+  font-size: 14.6px;
+}
+
+#custom-left5,
+#custom-right2 {
+  font-size: 15.68px;
+}
+
+/*
+  Adjust these properties as well to keep the design consistent.
+*/
+
+/* ───────────────────────────────────────────────────────────┤ workspaces ├───
+*/
+#workspaces button {
+  border-radius: 8px;
+  padding: 0 2px;
+}
+
+#workspaces button.active {
+  padding: 0 6px;
+}
+
+/* ─────────────────────────────────────────────────────────┤ power button ├───
+*/
+#custom-power {
+  border-radius: 10px;
+  padding: 0 6px 0 9px;
 }
