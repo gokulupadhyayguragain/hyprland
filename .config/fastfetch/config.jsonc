@@ -1,0 +1,37 @@
+{
+  "display": {
+    "separator": " ",
+    "key": {
+      "width": 20
+    },
+    "color": "blue"
+  },
+  "logo": {
+    "type": "none"
+  },
+  "modules": [
+    "os",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "terminal",
+    "cpu",
+    "gpu",
+    {
+      "name": "memory",
+      "options": {
+        "format": "mb,percent"
+      }
+    },
+    {
+      "name": "disk",
+      "options": {
+        "mount": "/",
+        "frontLabel": "Disk"
+      }
+    },
+    "battery",
+    "break"
+  ]
+}
