@@ -10,7 +10,17 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias divya='paru'
+
+
+
+
+alias update='paru -Syu'
+alias install='paru -S --noconfirm'
+alias remove='paru -Rns'
+alias clean='paru -Rns $(pacman -Qdtq)'
+
+
+
 
 # Add more colorful options for specific commands
 export GREP_COLOR='1;33'
