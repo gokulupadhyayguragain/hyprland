@@ -20,6 +20,11 @@ alias remove='paru -Rns'
 alias clean='paru -Rns $(pacman -Qdtq)'
 
 
+export GTK_THEME=Sweet-Dark
+
+export GTK_THEME=Sweet-Dark
+export GTK_DATA_PREFIX=$HOME/.config/hypr
+
 
 
 # Add more colorful options for specific commands
@@ -29,7 +34,7 @@ alias diff='diff --color=auto'
 # Customize prompt command to ensure clean output
 trap 'printf "\e[0m"' DEBUG
 
-#fastfetch
+fastfetch
 
 export PATH="$HOME/.dotnet/tools/:$PATH"
 export PATH="/opt/google/chrome/chrome/:$PATH"
