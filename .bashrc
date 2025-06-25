@@ -27,3 +27,4 @@ export PATH="/opt/google/chrome/chrome/:$PATH"
 export ANDROID_HOME=/opt/FLUTTER
 export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$ANDROID_HOME/platform-tools:$PATH
 export PATH="$HOME/flutter/bin:$PATH"
+export CXX=clang++
